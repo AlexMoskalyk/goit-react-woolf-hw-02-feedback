@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import css from './FeedbackOptions.module.css';
 
-const buttons = ['good', 'neutral', 'bad'];
-
-class FeedbackOptions extends Component {
-  render() {
-    return (
-      <div>
-        {buttons.map((item, idx) => (
-          <button
-            onClick={this.props.handleStatisticsReaction}
-            className={css.btn}
-            key={idx}
-            type="button"
-            name={item}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-    );
-  }
-}
+const FeedbackOptions = ({ feedbackOptions, handleStatisticsReaction }) => {
+  return (
+    <>
+      {feedbackOptions.map(option => (
+        <button
+          onClick={() => handleStatisticsReaction(option)}
+          className={css.btn}
+          type="button"
+          name={option}
+          key={option}
+        >
+          {option}
+        </button>
+      ))}
+    </>
+  );
+};
 
 export default FeedbackOptions;

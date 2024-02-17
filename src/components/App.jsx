@@ -12,19 +12,14 @@ export default class App extends Component {
     bad: 0,
   };
 
-  handleStatisticsReaction = evt => {
-    const { name } = evt.target;
-
+  handleStatisticsReaction = option => {
     this.setState(prevState => {
-      return { [name]: prevState[name] + 1 };
+      return { [option]: prevState[option] + 1 };
     });
   };
 
   countTotalFeedback = () => {
-    return Object.keys(this.state).reduce(
-      (acc, key) => acc + this.state[key],
-      0
-    );
+    return Object.values(this.state).reduce((acc, value) => acc + value, 0);
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -41,6 +36,7 @@ export default class App extends Component {
       <div className={css.container}>
         <Section title="Please leave feedback">
           <FeedbackOptions
+            feedbackOptions={Object.keys(this.state)}
             handleStatisticsReaction={this.handleStatisticsReaction}
           />
         </Section>
